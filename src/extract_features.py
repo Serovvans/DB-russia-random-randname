@@ -18,6 +18,14 @@ emb = NewsEmbedding()
 morph_tagger = NewsMorphTagger(emb)
 
 def preprocess_text(text):
+    """Очищает и нормализует тексты заголовков
+
+    Args:
+        text (str): тексты
+
+    Returns:
+        List[str]: список извлеченных существительных
+    """
     doc = Doc(text)
     doc.segment(segmenter)
     doc.tag_morph(morph_tagger)
@@ -32,6 +40,15 @@ def preprocess_text(text):
 
 
 def extract_features(path, part):
+    """Чистит данные и считает фичи
+
+    Args:
+        path (str): путь к файлас
+        part (str): тест или трейн
+
+    Returns:
+        (pd.DataFrame, list): Датасет с посчитаными признаками и список категориальных признаков
+    """
     
     data = clear_data(path, part)
     

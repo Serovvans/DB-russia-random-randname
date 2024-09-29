@@ -10,13 +10,20 @@ from sklearn.utils.class_weight import compute_class_weight
 from sklearn.metrics import accuracy_score
 
 def get_data():
-    preppare_events("train_data/", "train")
+    """Готовит данные
+
+    Returns:
+        (pd.DataFrame, list): Фичи данных и список категориальных столбцов
+    """
+    preppare_events("train_data/", "train") # Подготавливаем разметку даты
     
-    X, cat_features = extract_features("train_data/", "train")
+    X, cat_features = extract_features("train_data/", "train") # Чистим данные и считаем фичи
     
     return X, cat_features
 
 def train_models():
+    """Учит модель
+    """
     features, cat_features = get_data()
     X = features.drop(columns=['sex', 'age_class'])
 

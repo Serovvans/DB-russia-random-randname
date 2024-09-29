@@ -1,7 +1,14 @@
 import pandas as pd
 from datetime import timedelta
 
-def preppare_events(path, part,):
+def preppare_events(path, part):
+    """Подготавливает временные данные в информации о просмотрах
+
+    Args:
+        path (str): путь к файлас
+        part (str): трейн или тест
+
+    """
     data = pd.read_csv(path+f"{part}_events.csv")
     
     data['time'] = pd.to_datetime(data['event_timestamp']).dt.time.apply(str)
